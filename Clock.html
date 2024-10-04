@@ -8,10 +8,10 @@
 </head>
 
 <body>
-   <h1>Digital</h1>
+   <h1 id="currentDate"></h1>
        <!--=====Target area for Time displayed======-->
        <div id="showTimeHere" class="clock_outlook"></div>
-   <h1>Clock</h1>
+   <h1 id="currentDay"></h1>
 
    <!--=====Marquee for Image floating movement======-->
       <marquee>
@@ -30,6 +30,8 @@
 		 var h = currentTime.getHours();
 		 var m = currentTime.getMinutes();
 		 var s = currentTime.getSeconds();
+         var day = currentTime.toLocaleString('en-us', { weekday: 'long' });
+         var date = currentTime.toLocaleDateString();
          //Conditionals If, else if....
 		if (h==0){
 			h = 12;
@@ -53,7 +55,12 @@
 		}
         //outlook of the Hour, Minute and Second value
 		var digClock = document.getElementById('showTimeHere');
-        digClock.innerText = h + ":" + m + ":" + s + ":" + " " + meridium;
+        digClock.innerText = h + ":" + m + ":" + s  + " " + meridium;
+
+        // Display date and day
+        document.getElementById('currentDate').innerText = date;
+        document.getElementById('currentDay').innerText = day;
+
         setTimeout('clockEngine()', 1000);
     }
 	clockEngine();
